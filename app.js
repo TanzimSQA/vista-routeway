@@ -402,13 +402,13 @@ function renderPackages(tours) {
 
   if (tours.length === 0) {
     container.innerHTML = `
-      <div class="col-span-full py-16 text-center">
-        <div class="inline-flex p-4 rounded-full bg-slate-100 text-slate-400 mb-4">
-          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+      <div class="col-span-full py-12 sm:py-16 text-center">
+        <div class="inline-flex p-3 sm:p-4 rounded-full bg-slate-100 text-slate-400 mb-3">
+          <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
         </div>
-        <h3 class="text-2xl font-bold text-slate-800">No Packages Found</h3>
-        <p class="text-slate-600 mt-2">Try adjusting your search query or switching categories.</p>
-        <button onclick="resetFilters()" class="mt-6 px-6 py-2.5 rounded-full bg-sky-600 text-white font-medium hover:bg-sky-700 transition">View All Packages</button>
+        <h3 class="text-xl sm:text-2xl font-bold text-slate-800">No Packages Found</h3>
+        <p class="text-slate-600 text-xs sm:text-sm mt-1.5">Try adjusting your search query or switching categories.</p>
+        <button onclick="resetFilters()" class="mt-5 px-5 py-2.5 rounded-full bg-sky-600 text-white font-medium text-xs sm:text-sm hover:bg-sky-700 transition">View All Packages</button>
       </div>
     `;
     return;
@@ -417,73 +417,73 @@ function renderPackages(tours) {
   container.innerHTML = tours.map(tour => `
     <div class="tour-card bg-white rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm flex flex-col group">
       <!-- Image Header with Badges -->
-      <div class="relative h-64 overflow-hidden">
-        <img src="${tour.featuredImage}" alt="${tour.title}" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
-        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20"></div>
+      <div class="relative h-52 sm:h-64 overflow-hidden">
+        <img src="${tour.featuredImage}" alt="${tour.title}" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-black/20"></div>
         
         <!-- Top Badges -->
-        <div class="absolute top-4 left-4 flex gap-2 flex-wrap">
-          <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide badge-gold uppercase shadow-md">${tour.badge}</span>
-          <span class="px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-slate-900/80 backdrop-blur-md text-white border border-white/20 capitalize">${tour.type}</span>
+        <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex gap-1.5 sm:gap-2 flex-wrap">
+          <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wide badge-gold uppercase shadow-md">${tour.badge}</span>
+          <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wide bg-slate-900/85 backdrop-blur-md text-white border border-white/20 capitalize">${tour.type}</span>
         </div>
 
         <!-- Duration Tag -->
-        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-slate-900 text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md">
-          <svg class="w-3.5 h-3.5 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          ${tour.duration}
+        <div class="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/90 backdrop-blur-md text-slate-900 text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
+          <svg class="w-3 h-3 text-sky-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>${tour.duration}</span>
         </div>
 
         <!-- Location Bottom Tag -->
-        <div class="absolute bottom-3 left-4 right-4 text-white flex items-center justify-between text-sm">
-          <div class="flex items-center gap-1.5 font-medium truncate">
-            <svg class="w-4 h-4 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <div class="absolute bottom-3 left-3 right-3 sm:left-4 sm:right-4 text-white flex items-center justify-between text-xs sm:text-sm">
+          <div class="flex items-center gap-1 font-medium truncate pr-2">
+            <svg class="w-3.5 h-3.5 text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
             <span class="truncate drop-shadow">${tour.location}</span>
           </div>
-          <div class="flex items-center gap-1 font-semibold text-amber-300 text-xs shrink-0 bg-slate-900/70 px-2 py-0.5 rounded-md">
+          <div class="flex items-center gap-1 font-semibold text-amber-300 text-[11px] sm:text-xs shrink-0 bg-slate-900/70 px-2 py-0.5 rounded-md">
             <span>★</span> ${tour.rating} <span class="text-slate-300 font-normal">(${tour.reviewsCount})</span>
           </div>
         </div>
       </div>
 
       <!-- Card Body -->
-      <div class="p-6 flex-1 flex flex-col justify-between">
+      <div class="p-4 sm:p-6 flex-1 flex flex-col justify-between">
         <div>
-          <h3 class="font-bold text-xl text-slate-900 line-clamp-2 hover:text-sky-600 transition-colors cursor-pointer" onclick="openItineraryModal('${tour.id}')">
+          <h3 class="font-bold text-lg sm:text-xl text-slate-900 line-clamp-2 hover:text-sky-600 transition-colors cursor-pointer leading-snug" onclick="openItineraryModal('${tour.id}')">
             ${tour.title}
           </h3>
-          <p class="text-slate-600 text-sm mt-2.5 line-clamp-2 leading-relaxed">
+          <p class="text-slate-600 text-xs sm:text-sm mt-2 line-clamp-2 leading-relaxed">
             ${tour.overview}
           </p>
 
           <!-- Key Amenities/Pills -->
-          <div class="flex flex-wrap gap-1.5 mt-4">
+          <div class="flex flex-wrap gap-1 sm:gap-1.5 mt-3 sm:mt-4">
             ${tour.highlights.slice(0, 3).map(h => `
-              <span class="text-xs bg-sky-50 text-sky-800 font-medium px-2.5 py-1 rounded-md border border-sky-100 flex items-center gap-1">
-                <svg class="w-3 h-3 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                ${h}
+              <span class="text-[11px] sm:text-xs bg-sky-50 text-sky-800 font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-md border border-sky-100 flex items-center gap-1">
+                <svg class="w-3 h-3 text-sky-500 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                <span>${h}</span>
               </span>
             `).join('')}
           </div>
         </div>
 
         <!-- Pricing & Action Row -->
-        <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between">
+        <div class="pt-4 sm:pt-5 mt-4 sm:mt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <div class="text-xs uppercase tracking-wider text-slate-400 font-semibold">Starting From</div>
+            <div class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-400 font-semibold">Starting From</div>
             <div class="flex items-baseline gap-1.5">
-              <span class="text-2xl font-extrabold text-slate-900">৳${tour.priceBdt.toLocaleString()}</span>
+              <span class="text-xl sm:text-2xl font-extrabold text-slate-900">৳${tour.priceBdt.toLocaleString()}</span>
               <span class="text-xs font-semibold text-slate-500">($${tour.priceUsd})</span>
             </div>
-            <div class="text-[11px] text-slate-400">per person (all incl.)</div>
+            <div class="text-[10px] sm:text-[11px] text-slate-400">per person (all incl.)</div>
           </div>
 
-          <div class="flex items-center gap-2">
-            <button onclick="openItineraryModal('${tour.id}')" class="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-sm hover:bg-slate-200 transition">
+          <div class="grid grid-cols-2 sm:flex sm:items-center gap-2">
+            <button onclick="openItineraryModal('${tour.id}')" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm hover:bg-slate-200 transition text-center active:scale-95">
               Itinerary
             </button>
-            <a href="https://wa.me/8801900000000?text=${encodeURIComponent(`Hello Vista Routeway! I am interested in booking the '${tour.title}' package (৳${tour.priceBdt.toLocaleString()}). Please provide departure dates and details.`)}" target="_blank" class="px-4 py-2.5 rounded-xl bg-sky-600 text-white font-semibold text-sm hover:bg-sky-700 transition flex items-center gap-1.5 shadow-sm shadow-sky-600/30">
+            <a href="https://wa.me/8801900000000?text=${encodeURIComponent(`Hello Vista Routeway! I am interested in booking the '${tour.title}' package (৳${tour.priceBdt.toLocaleString()}). Please provide departure dates and details.`)}" target="_blank" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-sky-600 text-white font-semibold text-xs sm:text-sm hover:bg-sky-700 transition flex items-center justify-center gap-1.5 shadow-sm shadow-sky-600/30 active:scale-95">
               <span>Book</span>
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
             </a>
           </div>
         </div>
@@ -892,36 +892,64 @@ function setupContactForms() {
 
 // Sticky Navbar Scroll Effect
 function setupNavbarScroll() {
+  const wrapper = document.getElementById("header-wrapper");
+  const topBar = document.getElementById("top-bar");
   const navbar = document.getElementById("main-nav");
   if (!navbar) return;
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 40) {
       navbar.classList.add("glass-nav", "shadow-lg");
-      navbar.classList.remove("bg-transparent");
+      if (topBar && window.innerWidth < 640) {
+        topBar.classList.add("hidden");
+      }
     } else {
       navbar.classList.remove("glass-nav", "shadow-lg");
-      navbar.classList.add("bg-transparent");
+      if (topBar && window.innerWidth < 640) {
+        topBar.classList.remove("hidden");
+      }
     }
   });
 }
 
-// Mobile Menu Drawer
+// Mobile Menu Drawer with Animated Icon Toggle
 function setupMobileMenu() {
   const toggleBtn = document.getElementById("mobile-menu-toggle");
   const menu = document.getElementById("mobile-menu");
   const links = document.querySelectorAll(".mobile-nav-link");
+  const icon = document.getElementById("hamburger-icon");
 
   if (!toggleBtn || !menu) return;
 
-  toggleBtn.addEventListener("click", () => {
+  const updateIcon = (isOpen) => {
+    if (!icon) return;
+    if (isOpen) {
+      icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>`;
+    } else {
+      icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>`;
+    }
+  };
+
+  toggleBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const isClosed = menu.classList.contains("hidden");
     menu.classList.toggle("hidden");
+    updateIcon(isClosed);
   });
 
   links.forEach(link => {
     link.addEventListener("click", () => {
       menu.classList.add("hidden");
+      updateIcon(false);
     });
+  });
+
+  // Close when tapping outside
+  document.addEventListener("click", (e) => {
+    if (!menu.contains(e.target) && !toggleBtn.contains(e.target) && !menu.classList.contains("hidden")) {
+      menu.classList.add("hidden");
+      updateIcon(false);
+    }
   });
 }
 

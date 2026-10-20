@@ -12,6 +12,12 @@
 html {
   scroll-behavior: smooth;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .font-serif-luxury {
@@ -20,7 +26,7 @@ html {
 
 /* Glassmorphism Classes */
 .glass-nav {
-  background: rgba(8, 41, 76, 0.88);
+  background: rgba(8, 41, 76, 0.95);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
@@ -66,16 +72,17 @@ html {
   height: 100%;
   background: linear-gradient(
     135deg,
-    rgba(4, 23, 44, 0.92) 0%,
-    rgba(8, 41, 76, 0.78) 50%,
-    rgba(4, 23, 44, 0.88) 100%
+    rgba(4, 23, 44, 0.94) 0%,
+    rgba(8, 41, 76, 0.82) 50%,
+    rgba(4, 23, 44, 0.92) 100%
   );
   z-index: 1;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 9px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
   background: #04172c;
@@ -88,13 +95,24 @@ html {
   background: #0369a1;
 }
 
+/* Hide scrollbar utility for clean mobile horizontal tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Card hover animation */
 .tour-card {
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.tour-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 35px -10px rgba(8, 41, 76, 0.18), 0 10px 15px -8px rgba(0, 0, 0, 0.08);
+@media (min-width: 768px) {
+  .tour-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 35px -10px rgba(8, 41, 76, 0.18), 0 10px 15px -8px rgba(0, 0, 0, 0.08);
+  }
 }
 
 /* Floating WhatsApp Pulse */
@@ -112,6 +130,18 @@ html {
 
 .whatsapp-pulse {
   animation: pulseGlow 2.2s infinite;
+}
+
+/* Prevent auto-zoom on mobile iOS by ensuring 16px minimum font size */
+@media (max-width: 767px) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Safe area inset support for mobile screens with notches / home bars */
+.safe-pb {
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
 }
 
 /* Shimmer Button Effect */
@@ -142,27 +172,17 @@ html {
   top: 100%;
 }
 
-/* Modal Transitions */
-.modal-backdrop {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-.modal-backdrop.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  transform: scale(0.95) translateY(15px);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.modal-backdrop.active .modal-content {
-  transform: scale(1) translateY(0);
-}
-
 /* Badge glow */
 .badge-gold {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: #ffffff;
+}
+
+/* Smooth modal bottom sheet on mobile screens */
+@media (max-width: 640px) {
+  .modal-sheet {
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    max-height: 90vh !important;
+  }
 }
