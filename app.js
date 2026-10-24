@@ -1243,15 +1243,18 @@ const TRANSLATIONS = {
 // Global State
 let currentLang = localStorage.getItem('vista_language') || 'en';
 let currentTheme = localStorage.getItem('vista_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+let currentCurrency = localStorage.getItem('vista_currency') || 'bdt';
 let activeCategory = 'all';
 window.TOURS_DATA = TOURS_DATA;
 let currentModalTourId = null;
 
 // Initialize on DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
-  // Initialize Theme & Language
+  // Initialize Theme, Language & Currency
   initTheme();
   initLanguage();
+  initCurrency();
+  initLiveBookings();
 
   // Render initial tours
   renderPackages(TOURS_DATA);
@@ -1560,29 +1563,41 @@ function renderPackages(tours) {
     const location = (currentLang === 'bn' && tour.location_bn) ? tour.location_bn : tour.location;
     const overview = (currentLang === 'bn' && tour.overview_bn) ? tour.overview_bn : tour.overview;
     const highlights = (currentLang === 'bn' && tour.highlights_bn) ? tour.highlights_bn : tour.highlights;
-    const priceFormatted = formatNumber(tour.priceBdt);
+    const priceFormattedBdt = formatNumber(tour.priceBdt);
+    const priceFormattedUsd = tour.priceUsd.toLocaleString();
+
+    const isUsd = currentCurrency === 'usd';
+    const primaryPrice = isUsd ? `$${priceFormattedUsd}` : `৳${priceFormattedBdt}`;
+    const secondaryPrice = isUsd ? `(৳${priceFormattedBdt})` : `($${priceFormattedUsd})`;
+    const isBestseller = tour.badge && (tour.badge.includes('Best') || tour.badge.includes('Popular'));
 
     const waText = encodeURIComponent(
       currentLang === 'bn'
-        ? `আসসালামু আলাইকুম ভিস্টা রুটওয়ে ঢাকা! আমি '${title}' ট্যুর প্যাকেজটি (৳${priceFormatted} প্রতি ব্যক্তি) সম্পর্কে বিস্তারিত জানতে ও বুকিং করতে আগ্রহী। অনুগ্রহ করে পরবর্তী প্রসেস জানান!`
-        : `Hello Vista Routeway! I am interested in booking the '${tour.title}' package (৳${tour.priceBdt.toLocaleString()}). Please provide departure dates and details.`
+        ? `আসসালামু আলাইকুম ভিস্টা রুটওয়ে ঢাকা! আমি '${title}' ট্যুর প্যাকেজটি (${primaryPrice} প্রতি ব্যক্তি) সম্পর্কে বিস্তারিত জানতে ও বুকিং করতে আগ্রহী। অনুগ্রহ করে পরবর্তী প্রসেস জানান!`
+        : `Hello Vista Routeway! I am interested in booking the '${tour.title}' package (${primaryPrice}). Please provide departure dates and details.`
     );
 
     return `
-      <div class="tour-card bg-white dark:bg-[#081e3a] rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex flex-col group transition-all">
-        <!-- Image Header with Badges -->
-        <div class="relative h-52 sm:h-64 overflow-hidden">
-          <img src="${tour.featuredImage}" alt="${title}" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out" loading="lazy">
+      <div id="tour-card-${tour.id}" class="tour-card bg-white dark:bg-[#081e3a] rounded-2xl overflow-hidden border border-slate-200/80 dark:border-slate-700/80 shadow-sm flex flex-col group transition-all duration-300">
+        <!-- Image Header with Badges & Action Controls -->
+        <div class="relative h-56 sm:h-64 overflow-hidden">
+          <img src="${tour.featuredImage}" alt="${title}" class="ken-burns w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
           <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-black/20"></div>
           
           <!-- Top Badges -->
-          <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex gap-1.5 sm:gap-2 flex-wrap">
+          <div class="absolute top-3 left-3 sm:top-4 sm:left-4 flex gap-1.5 sm:gap-2 flex-wrap z-10">
             <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wide badge-gold uppercase shadow-md">${badge}</span>
             <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wide bg-slate-900/85 backdrop-blur-md text-white border border-white/20 capitalize">${tour.type}</span>
+            ${isBestseller ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-bold bg-rose-600/90 text-white backdrop-blur-md shadow-md animate-pulse">🔥 <span>Selling Fast</span></span>` : ''}
           </div>
 
-          <!-- Top Right: Wishlist Heart & Duration Tag -->
+          <!-- Top Right: Share, Wishlist Heart & Duration Tag -->
           <div class="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1.5 sm:gap-2 z-10">
+            <!-- Share Tour Button -->
+            <button onclick="shareTour(event, '${tour.id}')" aria-label="Share Package" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 backdrop-blur-md text-white hover:text-sky-300 flex items-center justify-center transition-all shadow-md active:scale-90 cursor-pointer" title="Share Package">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/></svg>
+            </button>
+
             <!-- Wishlist Heart Button -->
             <button onclick="toggleWishlist(event, '${tour.id}')" data-tour-id="${tour.id}" aria-label="Save to Wishlist" class="wishlist-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 backdrop-blur-md text-white flex items-center justify-center transition-all shadow-md active:scale-90 cursor-pointer" title="Save to Wishlist">
               <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white fill-none transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
@@ -1633,8 +1648,8 @@ function renderPackages(tours) {
             <div>
               <div class="text-[10px] sm:text-xs uppercase tracking-wider text-slate-400 font-semibold">${dict.card_starting_from}</div>
               <div class="flex items-baseline gap-1.5">
-                <span class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">৳${priceFormatted}</span>
-                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">($${tour.priceUsd})</span>
+                <span class="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">${primaryPrice}</span>
+                <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">${secondaryPrice}</span>
               </div>
               <div class="text-[10px] sm:text-[11px] text-slate-400">${dict.card_per_person}</div>
             </div>
@@ -1643,7 +1658,7 @@ function renderPackages(tours) {
               <button onclick="openItineraryModal('${tour.id}')" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition text-center active:scale-95 cursor-pointer">
                 ${dict.card_itinerary_btn}
               </button>
-              <a href="https://wa.me/8801900000000?text=${waText}" target="_blank" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-sky-600 text-white font-semibold text-xs sm:text-sm hover:bg-sky-700 transition flex items-center justify-center gap-1.5 shadow-sm shadow-sky-600/30 active:scale-95">
+              <a href="https://wa.me/8801900000000?text=${waText}" target="_blank" onclick="triggerConfetti()" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-sky-600 text-white font-semibold text-xs sm:text-sm hover:bg-sky-700 transition flex items-center justify-center gap-1.5 shadow-sm shadow-sky-600/30 active:scale-95">
                 <span>${dict.card_book_btn}</span>
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </a>
@@ -2230,3 +2245,173 @@ window.setTheme = setTheme;
 window.toggleTheme = toggleTheme;
 window.openItineraryModal = openItineraryModal;
 window.resetFilters = resetFilters;
+
+
+// Currency Management Engine (BDT & USD)
+function initCurrency() {
+  setCurrency(currentCurrency, false);
+}
+
+function setCurrency(currency, save = true) {
+  currentCurrency = currency;
+  if (save) {
+    localStorage.setItem('vista_currency', currency);
+  }
+
+  const btnBdt = document.getElementById("curr-btn-bdt");
+  const btnUsd = document.getElementById("curr-btn-usd");
+
+  if (currency === 'usd') {
+    if (btnBdt) btnBdt.className = "px-2 py-0.5 rounded-full text-slate-300 hover:text-white transition-all cursor-pointer";
+    if (btnUsd) btnUsd.className = "px-2 py-0.5 rounded-full text-white bg-sky-500 shadow-sm transition-all cursor-pointer";
+  } else {
+    if (btnBdt) btnBdt.className = "px-2 py-0.5 rounded-full text-white bg-sky-500 shadow-sm transition-all cursor-pointer";
+    if (btnUsd) btnUsd.className = "px-2 py-0.5 rounded-full text-slate-300 hover:text-white transition-all cursor-pointer";
+  }
+
+  // Re-render packages cards with new currency
+  filterByCategory(activeCategory);
+
+  // Update open modal if visible
+  if (currentModalTourId) {
+    const modal = document.getElementById("itinerary-modal");
+    if (modal && !modal.classList.contains("hidden")) {
+      openItineraryModal(currentModalTourId);
+    }
+  }
+
+  // Re-calculate budget estimator
+  const calcTravelers = document.getElementById("calc-travelers");
+  if (calcTravelers) {
+    calcTravelers.dispatchEvent(new Event("input"));
+  }
+}
+
+// Share Tour Package
+function shareTour(e, tourId) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  const tour = TOURS_DATA.find(t => t.id === tourId);
+  const title = tour ? tour.title : 'Vista Routeway Tour';
+  const url = window.location.origin + window.location.pathname + '#packages';
+
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(`${title} - Book with Vista Routeway: ${url}`).then(() => {
+      triggerConfetti();
+      const toast = document.getElementById("notification-toast");
+      if (toast) {
+        const titleEl = toast.querySelector(".font-bold");
+        const descEl = toast.querySelector(".text-slate-300");
+        if (titleEl) titleEl.textContent = "Link Copied! 🎉";
+        if (descEl) descEl.textContent = "Package link copied to clipboard. Share with friends!";
+        toast.classList.remove("translate-y-24", "opacity-0");
+        toast.classList.add("translate-y-0", "opacity-100");
+        setTimeout(() => {
+          toast.classList.remove("translate-y-0", "opacity-100");
+          toast.classList.add("translate-y-24", "opacity-0");
+        }, 4000);
+      }
+    });
+  }
+}
+
+// Particle Confetti Celebration
+function triggerConfetti() {
+  if (typeof window.confetti === 'function') {
+    window.confetti({
+      particleCount: 65,
+      spread: 70,
+      origin: { y: 0.75 },
+      colors: ['#0284c7', '#38bdf8', '#f59e0b', '#fbbf24', '#10b981']
+    });
+  }
+}
+
+// Live Social Proof Booking Notifications
+const RECENT_BOOKINGS = [
+  { name: "Farhana & Family", loc: "Gulshan, Dhaka", pkg: "Maldives Luxury Overwater Escape", time: "4m ago", img: "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=150&q=80" },
+  { name: "Tanvir Ahmed", loc: "Banani, Dhaka", pkg: "Dubai Extravaganza & Desert Safari", time: "9m ago", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=150&q=80" },
+  { name: "Haji Mohammad Anwar", loc: "Uttara, Dhaka", pkg: "VIP Umrah & Haramain 5★ Package", time: "15m ago", img: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=150&q=80" },
+  { name: "Dr. Sabrina & Spouse", loc: "Dhanmondi, Dhaka", pkg: "Kashmir Dal Lake & Gulmarg Escape", time: "22m ago", img: "https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=150&q=80" },
+  { name: "Nafis & Corporate Group", loc: "Motijheel, Dhaka", pkg: "Sajek Valley Cloud Cottages Tour", time: "34m ago", img: "https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=150&q=80" },
+  { name: "Imran & Friends", loc: "Sylhet, Bangladesh", pkg: "Bali Tropical Villa & Nusa Penida", time: "48m ago", img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=150&q=80" }
+];
+
+let bookingTimer = null;
+let bookingIndex = 0;
+
+function initLiveBookings() {
+  const chip = document.getElementById("live-booking-chip");
+  if (!chip) return;
+
+  function showNextBooking() {
+    const item = RECENT_BOOKINGS[bookingIndex % RECENT_BOOKINGS.length];
+    bookingIndex++;
+
+    const textEl = document.getElementById("live-booking-text");
+    const timeEl = document.getElementById("live-booking-time");
+    const imgEl = document.getElementById("live-booking-img");
+
+    if (textEl) textEl.textContent = `${item.name} (${item.loc}) booked ${item.pkg}`;
+    if (timeEl) timeEl.textContent = `${item.time} • 100% Verified`;
+    if (imgEl) imgEl.src = item.img;
+
+    chip.classList.remove("-translate-x-[120%]", "opacity-0");
+    chip.classList.add("translate-x-0", "opacity-100");
+
+    setTimeout(() => {
+      chip.classList.remove("translate-x-0", "opacity-100");
+      chip.classList.add("-translate-x-[120%]", "opacity-0");
+    }, 5500);
+  }
+
+  // First trigger after 4s, then every 15s
+  setTimeout(() => {
+    showNextBooking();
+    bookingTimer = setInterval(showNextBooking, 16000);
+  }, 4000);
+}
+
+function dismissLiveBooking() {
+  const chip = document.getElementById("live-booking-chip");
+  if (chip) {
+    chip.classList.remove("translate-x-0", "opacity-100");
+    chip.classList.add("-translate-x-[120%]", "opacity-0");
+  }
+  if (bookingTimer) clearInterval(bookingTimer);
+}
+
+// Quick Filter from Inspiration Bar
+function quickFilterDestination(destKey) {
+  const packagesSec = document.getElementById("packages");
+  if (packagesSec) {
+    packagesSec.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  const destSelect = document.getElementById("search-destination");
+  if (destSelect) {
+    destSelect.value = destKey;
+    const searchBtn = document.getElementById("hero-search-btn");
+    if (searchBtn) searchBtn.click();
+  }
+
+  // Highlight tour card after scroll
+  setTimeout(() => {
+    const matchingCard = document.querySelector(`[id*="${destKey}"]`);
+    if (matchingCard) {
+      matchingCard.classList.add("ring-4", "ring-sky-400", "scale-105");
+      setTimeout(() => {
+        matchingCard.classList.remove("ring-4", "ring-sky-400", "scale-105");
+      }, 1500);
+    }
+  }, 600);
+}
+
+// Expose functions to window
+window.setCurrency = setCurrency;
+window.shareTour = shareTour;
+window.triggerConfetti = triggerConfetti;
+window.dismissLiveBooking = dismissLiveBooking;
+window.quickFilterDestination = quickFilterDestination;
