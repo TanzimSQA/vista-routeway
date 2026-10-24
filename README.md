@@ -9,6 +9,14 @@
 
 ## 🌟 Key Features
 
+- **Traveler Authentication & Personalization Portal (Login & Registration)**:
+  - **Secure Client-Side Auth**: Complete Sign In, Registration, Password Strength Meter, and Forgot Password recovery powered by persistent `localStorage`.
+  - **⚡ 1-Click Quick Demo Login**: Instantly test with pre-configured VIP Traveler account (`tanzim@vistarouteway.com` / `password123`).
+  - **Social Sign-In Integration**: Mock Google & Apple authentication flows with auto-profile creation.
+  - **❤️ Saved Packages Wishlist**: Click the heart button on any signature package to bookmark tours directly to your account.
+  - **Personalized Traveler Dashboard**: Edit contact information, departure city preferences, preferred trip styles, view inquiry history, and change passwords.
+  - **Smart Form Auto-Fill**: Automatically pre-fills your Name, Phone, and Email into contact and booking forms when logged in.
+  - **Full Bilingual i18n & Theme Support**: Complete English and Bengali (বাংলা) translations with seamless Light/Dark mode styling.
 - **Cinematic Ambient Video Hero Banner**: Powered by HTML5 high-efficiency video playback with audio toggle and ambient overlays.
 - **Interactive Trip Planner & Quick Search**: Filter by international/domestic destinations, trip styles (Honeymoon, Family, Luxury, Spiritual), and departure windows.
 - **Curated Tour Itineraries**: 10 signature tour packages with Day-by-Day breakdowns, high-res galleries, inclusions, exclusions, and instant price calculations in both **BDT (৳)** and **USD ($)**.

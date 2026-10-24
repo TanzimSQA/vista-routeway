@@ -7,6 +7,7 @@
 
 // Tour Packages Database with English & Bengali Content
 const TOURS_DATA = [
+
   {
     id: "maldives-luxury",
     title: "Maldives Luxury Overwater Villa & Lagoon Escape",
@@ -892,7 +893,58 @@ const TRANSLATIONS = {
     // Floating & Toasts
     float_wa_label: "WhatsApp Us",
     toast_title: "Inquiry Received!",
-    toast_desc: "Connecting you to WhatsApp..."
+    toast_desc: "Connecting you to WhatsApp...",
+
+    // Auth & Profile Bilingual Translations
+    nav_sign_in: "Sign In",
+    nav_register: "Register",
+    auth_modal_title: "Traveler Portal",
+    auth_modal_sub: "Sign in or create an account to unlock personalized trip planning & saved itineraries.",
+    auth_btn_login_tab: "Sign In",
+    auth_btn_register_tab: "Create Account",
+    auth_demo_title: "🚀 Quick Demo Traveler Login",
+    auth_demo_desc: "Test with pre-configured Tanzim Ahmed (VIP Gold Traveler)",
+    auth_or_email: "Or with email / phone",
+    auth_lbl_fullname: "Full Name",
+    auth_lbl_email: "Email or Phone",
+    auth_lbl_phone: "Phone / WhatsApp Number",
+    auth_lbl_password: "Password",
+    auth_lbl_confirm_password: "Confirm Password",
+    auth_lbl_preference: "Preferred Trip Style",
+    auth_lbl_remember: "Remember Me on this device",
+    auth_lbl_forgot: "Forgot Password?",
+    auth_btn_submit_login: "Sign In to Vista Routeway",
+    auth_btn_submit_register: "Create Traveler Account",
+    auth_terms_agree: "I agree to Vista Routeway's Terms of Service & Privacy Policy",
+    auth_no_account: "Don't have an account?",
+    auth_have_account: "Already have an account?",
+    auth_register_link: "Create Account",
+    auth_login_link: "Sign In",
+    auth_forgot_title: "Reset Password",
+    auth_forgot_desc: "Enter your registered email and we'll send you reset instructions.",
+    auth_btn_reset: "Send Reset Link",
+    auth_back_login: "Back to Sign In",
+    menu_my_account: "My Profile & Preferences",
+    menu_my_wishlist: "Saved Wishlist",
+    menu_my_trips: "My Bookings / Inquiries",
+    menu_logout: "Sign Out",
+    drawer_auth_guest_title: "Welcome, Traveler!",
+    drawer_auth_guest_sub: "Sign in to save tours & fast booking",
+    profile_modal_title: "Traveler Account Dashboard",
+    profile_tab_info: "Profile Details",
+    profile_tab_wishlist: "Saved Wishlist",
+    profile_tab_inquiries: "My Inquiries",
+    profile_tab_security: "Security",
+    profile_lbl_fullname: "Full Name",
+    profile_lbl_email: "Email Address (Verified)",
+    profile_lbl_phone: "Phone / WhatsApp",
+    profile_lbl_city: "Departure City",
+    profile_lbl_style: "Preferred Travel Style",
+    profile_btn_save: "Save Profile Changes",
+    profile_lbl_curr_pass: "Current Password",
+    profile_lbl_new_pass: "New Password (min 6 chars)",
+    profile_lbl_confirm_pass: "Confirm New Password",
+    profile_btn_change_pass: "Update Password"
   },
 
   bn: {
@@ -1133,7 +1185,58 @@ const TRANSLATIONS = {
     // Floating & Toasts
     float_wa_label: "হোয়াটসঅ্যাপ",
     toast_title: "তথ্য গৃহীত হয়েছে!",
-    toast_desc: "হোয়াটসঅ্যাপে সংযুক্ত করা হচ্ছে..."
+    toast_desc: "হোয়াটসঅ্যাপে সংযুক্ত করা হচ্ছে...",
+
+    // Auth & Profile Bilingual Translations
+    nav_sign_in: "সাইন ইন",
+    nav_register: "রেজিস্ট্রেশন",
+    auth_modal_title: "ট্রাভেলার পোর্টাল",
+    auth_modal_sub: "ভ্রমণ পরিকল্পনা ও সংরক্ষিত প্যাকেজ দেখতে লগইন বা নতুন অ্যাকাউন্ট তৈরি করুন।",
+    auth_btn_login_tab: "সাইন ইন",
+    auth_btn_register_tab: "নতুন অ্যাকাউন্ট",
+    auth_demo_title: "🚀 এক ক্লিকে ডেমো লগইন",
+    auth_demo_desc: "তানজিম আহমেদ (ভিআইপি গোল্ড ট্রাভেলার) ডেমো অ্যাকাউন্টে টেস্ট করুন",
+    auth_or_email: "অথবা ইমেইল / ফোন দিয়ে",
+    auth_lbl_fullname: "পুরো নাম",
+    auth_lbl_email: "ইমেইল বা ফোন নম্বর",
+    auth_lbl_phone: "ফোন / হোয়াটসঅ্যাপ নম্বর",
+    auth_lbl_password: "পাসওয়ার্ড",
+    auth_lbl_confirm_password: "কনফার্ম পাসওয়ার্ড",
+    auth_lbl_preference: "পছন্দের ভ্রমণ ধরণ",
+    auth_lbl_remember: "এই ডিভাইসে মনে রাখুন",
+    auth_lbl_forgot: "পাসওয়ার্ড ভুলে গেছেন?",
+    auth_btn_submit_login: "ভিস্টা রুটওয়েতে সাইন ইন করুন",
+    auth_btn_submit_register: "ট্রাভেলার অ্যাকাউন্ট তৈরি করুন",
+    auth_terms_agree: "আমি ভিস্টা রুটওয়ের শর্তাবলী ও প্রাইভেসি পলিসির সাথে একমত",
+    auth_no_account: "এখনো অ্যাকাউন্ট নেই?",
+    auth_have_account: "ইতিমধ্যে অ্যাকাউন্ট আছে?",
+    auth_register_link: "নতুন অ্যাকাউন্ট খুলুন",
+    auth_login_link: "সাইন ইন করুন",
+    auth_forgot_title: "পাসওয়ার্ড রিসেট",
+    auth_forgot_desc: "আপনার নিবন্ধিত ইমেইল লিখুন, আমরা পাসওয়ার্ড রিসেট লিংক পাঠাব।",
+    auth_btn_reset: "রিসেট লিংক পাঠান",
+    auth_back_login: "লগইনে ফিরে যান",
+    menu_my_account: "প্রোফাইল ও পছন্দসমূহ",
+    menu_my_wishlist: "সংরক্ষিত উইশলিস্ট",
+    menu_my_trips: "বুকিং ও অনুসন্ধান তালিকা",
+    menu_logout: "সাইন আউট",
+    drawer_auth_guest_title: "স্বাগতম, ভ্রমণপিপাসু!",
+    drawer_auth_guest_sub: "প্যাকেজ সংরক্ষণ ও দ্রুত বুকিংয়ের জন্য সাইন ইন করুন",
+    profile_modal_title: "ট্রাভেলার অ্যাকাউন্ট ড্যাশবোর্ড",
+    profile_tab_info: "প্রোফাইল বিবরণ",
+    profile_tab_wishlist: "সংরক্ষিত উইশলিস্ট",
+    profile_tab_inquiries: "আমার অনুসন্ধান",
+    profile_tab_security: "নিরাপত্তা",
+    profile_lbl_fullname: "পুরো নাম",
+    profile_lbl_email: "ইমেইল অ্যাড্রেস (ভেরিফায়েড)",
+    profile_lbl_phone: "ফোন / হোয়াটসঅ্যাপ",
+    profile_lbl_city: "যাত্রার শহর",
+    profile_lbl_style: "পছন্দের ভ্রমণ ধরণ",
+    profile_btn_save: "পরিবর্তনগুলো সংরক্ষণ করুন",
+    profile_lbl_curr_pass: "বর্তমান পাসওয়ার্ড",
+    profile_lbl_new_pass: "নতুন পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)",
+    profile_lbl_confirm_pass: "নতুন পাসওয়ার্ড নিশ্চিত করুন",
+    profile_btn_change_pass: "পাসওয়ার্ড আপডেট করুন"
   }
 };
 
@@ -1141,6 +1244,7 @@ const TRANSLATIONS = {
 let currentLang = localStorage.getItem('vista_language') || 'en';
 let currentTheme = localStorage.getItem('vista_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 let activeCategory = 'all';
+window.TOURS_DATA = TOURS_DATA;
 let currentModalTourId = null;
 
 // Initialize on DOM Ready
@@ -1303,6 +1407,11 @@ function setLanguage(lang, save = true) {
   const calcTravelers = document.getElementById("calc-travelers");
   if (calcTravelers) {
     calcTravelers.dispatchEvent(new Event("input"));
+  }
+
+  // Update Auth and Wishlist components for new language
+  if (window.VistaAuth && window.VistaAuth.updateUIForAuth) {
+    window.VistaAuth.updateUIForAuth();
   }
 }
 
@@ -1472,10 +1581,18 @@ function renderPackages(tours) {
             <span class="px-2.5 py-1 rounded-full text-[10px] sm:text-xs font-semibold tracking-wide bg-slate-900/85 backdrop-blur-md text-white border border-white/20 capitalize">${tour.type}</span>
           </div>
 
-          <!-- Duration Tag -->
-          <div class="absolute top-3 right-3 sm:top-4 sm:right-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
-            <svg class="w-3 h-3 text-sky-600 dark:text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-            <span>${duration}</span>
+          <!-- Top Right: Wishlist Heart & Duration Tag -->
+          <div class="absolute top-3 right-3 sm:top-4 sm:right-4 flex items-center gap-1.5 sm:gap-2 z-10">
+            <!-- Wishlist Heart Button -->
+            <button onclick="toggleWishlist(event, '${tour.id}')" data-tour-id="${tour.id}" aria-label="Save to Wishlist" class="wishlist-btn w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-900/80 hover:bg-slate-900 backdrop-blur-md text-white flex items-center justify-center transition-all shadow-md active:scale-90 cursor-pointer" title="Save to Wishlist">
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white fill-none transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </button>
+
+            <!-- Duration Tag -->
+            <div class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md text-slate-900 dark:text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1 shadow-md">
+              <svg class="w-3 h-3 text-sky-600 dark:text-sky-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <span>${duration}</span>
+            </div>
           </div>
 
           <!-- Location Bottom Tag -->
@@ -1536,6 +1653,10 @@ function renderPackages(tours) {
       </div>
     `;
   }).join('');
+
+  if (window.VistaAuth && window.VistaAuth.updateWishlistCardIcons) {
+    window.VistaAuth.updateWishlistCardIcons();
+  }
 }
 
 // Category Tabs
@@ -1974,6 +2095,29 @@ function setupContactForms() {
           toast.classList.remove("translate-y-0", "opacity-100");
           toast.classList.add("translate-y-24", "opacity-0");
         }, 5000);
+      }
+
+      // If user is logged in, record inquiry to user's account
+      if (window.VistaAuth && window.VistaAuth.getSessionUser) {
+        const currentUser = window.VistaAuth.getSessionUser();
+        if (currentUser) {
+          if (!currentUser.inquiries) currentUser.inquiries = [];
+          currentUser.inquiries.unshift({
+            id: 'inq_' + Date.now(),
+            packageTitle: destination ? `Custom Inquiry: ${destination}` : 'General Consultation',
+            destination: destination || 'Worldwide',
+            travelers: 2,
+            date: new Date().toISOString().split('T')[0],
+            status: 'Inquiry Sent'
+          });
+          const allUsers = JSON.parse(localStorage.getItem('vista_users') || '[]');
+          const uIdx = allUsers.findIndex(u => u.id === currentUser.id);
+          if (uIdx > -1) {
+            allUsers[uIdx] = currentUser;
+            localStorage.setItem('vista_users', JSON.stringify(allUsers));
+          }
+          window.VistaAuth.setSessionUser(currentUser);
+        }
       }
 
       contactForm.reset();
