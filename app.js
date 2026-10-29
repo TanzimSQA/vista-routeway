@@ -1658,7 +1658,7 @@ function renderPackages(tours) {
               <button onclick="openItineraryModal('${tour.id}')" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 font-semibold text-xs sm:text-sm hover:bg-slate-200 dark:hover:bg-slate-700 transition text-center active:scale-95 cursor-pointer">
                 ${dict.card_itinerary_btn}
               </button>
-              <a href="https://wa.me/8801900000000?text=${waText}" target="_blank" onclick="triggerConfetti()" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-sky-600 text-white font-semibold text-xs sm:text-sm hover:bg-sky-700 transition flex items-center justify-center gap-1.5 shadow-sm shadow-sky-600/30 active:scale-95">
+              <a href="https://wa.me/8801340773388?text=${waText}" target="_blank" onclick="triggerConfetti()" class="min-h-[44px] px-3 sm:px-4 py-2.5 rounded-xl bg-sky-600 text-white font-semibold text-xs sm:text-sm hover:bg-sky-700 transition flex items-center justify-center gap-1.5 shadow-sm shadow-sky-600/30 active:scale-95">
                 <span>${dict.card_book_btn}</span>
                 <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
               </a>
@@ -1844,7 +1844,7 @@ function openItineraryModal(tourId) {
         ? `আসসালামু আলাইকুম ভিস্টা রুটওয়ে ঢাকা! আমি '${title}' ট্যুর প্যাকেজটির বুকিং নিশ্চিত করতে চাই (৳${formattedBdt} প্রতি ব্যক্তি)। বুকিং প্রক্রিয়া ও ভ্রমণ নির্দেশিকা জানান!`
         : `Hello Vista Routeway Dhaka! I want to confirm the booking for '${tour.title}' (৳${tour.priceBdt.toLocaleString()} per person). Please guide me with payment options and travel requirements.`
     );
-    bookBtn.href = `https://wa.me/8801900000000?text=${waText}`;
+    bookBtn.href = `https://wa.me/8801340773388?text=${waText}`;
   }
 
   modal.classList.remove("hidden");
@@ -1989,7 +1989,7 @@ function setupCostCalculator() {
             `• Estimated Budget: ৳${subtotal.toLocaleString()} ($${totalUsd} USD)\n\n` +
             `Please provide a formal quote and available dates!`
       );
-      waBtn.href = `https://wa.me/8801900000000?text=${summaryMsg}`;
+      waBtn.href = `https://wa.me/8801340773388?text=${summaryMsg}`;
     }
   };
 
@@ -2138,7 +2138,7 @@ function setupContactForms() {
       contactForm.reset();
 
       // Open WhatsApp inquiry
-      window.open(`https://wa.me/8801900000000?text=${waMsg}`, "_blank");
+      window.open(`https://wa.me/8801340773388?text=${waMsg}`, "_blank");
     });
   }
 }
