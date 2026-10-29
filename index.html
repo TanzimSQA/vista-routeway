@@ -132,19 +132,19 @@
 
     <!-- Main Navigation Bar -->
     <nav id="main-nav" class="bg-navy-950/90 backdrop-blur-md border-b border-white/10 transition-all duration-300">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-16 sm:h-20">
+      <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16 sm:h-20 gap-2">
           
           <!-- Brand Logo -->
-          <a href="#hero" class="flex items-center gap-2.5 sm:gap-3 group shrink-0">
-            <div class="bg-white/95 p-1 sm:p-1.5 rounded-xl shadow-md border border-white/20 group-hover:scale-105 transition-transform flex items-center justify-center">
-              <img src="assets/logo-nav.png" alt="Vista Routeway" class="h-8 sm:h-10 w-auto object-contain">
+          <a href="#hero" class="flex items-center gap-2 sm:gap-3 group shrink min-w-0">
+            <div class="bg-white/95 p-1 sm:p-1.5 rounded-xl shadow-md border border-white/20 group-hover:scale-105 transition-transform flex items-center justify-center shrink-0">
+              <img src="assets/logo-nav.png" alt="Vista Routeway" class="h-7 sm:h-10 w-auto object-contain">
             </div>
-            <div class="flex flex-col">
-              <span class="text-white font-extrabold text-lg sm:text-xl tracking-tight leading-none group-hover:text-sky-300 transition-colors">
+            <div class="flex flex-col min-w-0">
+              <span class="text-white font-extrabold text-base sm:text-xl tracking-tight leading-none group-hover:text-sky-300 transition-colors truncate">
                 Vista <span class="text-sky-400">Routeway</span>
               </span>
-              <span data-i18n="brand_subtitle" class="text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-300 font-semibold mt-0.5">
+              <span data-i18n="brand_subtitle" class="hidden xs:inline sm:inline text-[9px] sm:text-[10px] uppercase tracking-widest text-slate-300 font-semibold mt-0.5 truncate">
                 Travel & Tours • Dhaka
               </span>
             </div>
@@ -253,8 +253,8 @@
             </a>
           </div>
 
-          <!-- Mobile Controls: Quick Lang + Theme + Hamburger Toggle Button -->
-          <div class="flex items-center gap-1.5 lg:hidden">
+          <!-- Mobile Controls: Quick Lang + Theme + Auth + Hamburger Toggle Button -->
+          <div class="flex items-center gap-1 sm:gap-1.5 lg:hidden shrink-0">
             
             <!-- Quick Mobile Language Switcher Button -->
             <button id="mobile-quick-lang-btn" aria-label="Toggle Language" class="px-2 py-1 rounded-lg bg-white/10 text-white font-bold text-xs border border-white/20 active:scale-95" onclick="toggleLanguage()">
@@ -262,25 +262,20 @@
             </button>
 
             <!-- Quick Mobile Theme Switcher Button -->
-            <button id="mobile-theme-toggle-btn" aria-label="Toggle Theme Mode" class="w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition active:scale-95 border border-white/15" onclick="toggleTheme()">
+            <button id="mobile-theme-toggle-btn" aria-label="Toggle Theme Mode" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition active:scale-95 border border-white/15" onclick="toggleTheme()">
               <svg id="mobile-theme-icon-sun" class="w-4 h-4 text-amber-300 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
               <svg id="mobile-theme-icon-moon" class="w-4 h-4 text-sky-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             </button>
 
             <!-- Quick Mobile Auth Button -->
-            <button id="mobile-auth-quick-btn" onclick="handleMobileAuthClick()" aria-label="Sign In or User Account" class="w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition active:scale-95 border border-white/15 cursor-pointer">
+            <button id="mobile-auth-quick-btn" onclick="handleMobileAuthClick()" aria-label="Sign In or User Account" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition active:scale-95 border border-white/15 cursor-pointer">
               <svg id="mobile-auth-icon-guest" class="w-4 h-4 text-sky-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
               <span id="mobile-auth-avatar-logged" class="hidden w-6 h-6 rounded-lg bg-sky-500 text-[10px] font-extrabold text-white items-center justify-center">TA</span>
             </button>
 
-            <!-- Quick WhatsApp on Mobile -->
-            <a href="https://wa.me/8801340773388" target="_blank" class="p-2 rounded-xl bg-emerald-600/90 text-white hover:bg-emerald-500 transition sm:hidden" title="WhatsApp Us">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
-            </a>
-
             <!-- Hamburger Button -->
-            <button id="mobile-menu-toggle" aria-label="Open Navigation Menu" class="w-10 h-10 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition active:scale-95 border border-white/15">
-              <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+            <button id="mobile-menu-toggle" aria-label="Open Navigation Menu" class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition active:scale-95 border border-white/15">
+              <svg id="hamburger-icon" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
             </button>
           </div>
 
@@ -1618,7 +1613,7 @@
   </div>
 
   <!-- LIVE BOOKING SOCIAL PROOF TOAST -->
-  <div id="live-booking-chip" class="fixed bottom-20 sm:bottom-6 left-4 sm:left-6 z-40 max-w-sm bg-navy-950/95 dark:bg-[#071d37]/95 backdrop-blur-xl p-3 sm:p-3.5 rounded-2xl shadow-2xl border border-sky-500/30 text-white transform -translate-x-[120%] opacity-0 transition-all duration-500 flex items-center gap-3">
+  <div id="live-booking-chip" class="fixed bottom-20 sm:bottom-6 left-3 sm:left-6 z-40 max-w-[calc(100vw-1.5rem)] sm:max-w-sm bg-navy-950/95 dark:bg-[#071d37]/95 backdrop-blur-xl p-3 sm:p-3.5 rounded-2xl shadow-2xl border border-sky-500/30 text-white transform -translate-x-[120%] opacity-0 transition-all duration-500 flex items-center gap-3">
     <div class="relative w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-white/20 shadow-sm">
       <img id="live-booking-img" src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=150&q=80" alt="Destination" class="w-full h-full object-cover">
       <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 rounded-full ring-2 ring-navy-950"></span>

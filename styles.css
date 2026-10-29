@@ -431,3 +431,53 @@ html.dark .tour-card:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* ========================================================
+   COMPREHENSIVE MOBILE RESPONSIVENESS & TOUCH ENHANCEMENTS
+   ======================================================== */
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Fluid responsive touch targets and typography */
+@media (max-width: 640px) {
+  .hero-video-container {
+    height: 100%;
+  }
+  .glow-orb-sky {
+    width: 240px;
+    height: 240px;
+  }
+  .glow-orb-gold {
+    width: 200px;
+    height: 200px;
+  }
+  button, a.btn-shimmer, a.filter-btn {
+    touch-action: manipulation;
+  }
+  .modal-sheet {
+    max-height: 92vh !important;
+  }
+}
+
+/* Extra small screen breakpoint for phones <= 360px (iPhone SE, Galaxy A-series) */
+@media (max-width: 360px) {
+  #top-bar {
+    font-size: 10px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .glass-dock {
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+  }
+  .glass-dock a, .glass-dock button {
+    padding-left: 0.15rem;
+    padding-right: 0.15rem;
+  }
+}

@@ -211,11 +211,11 @@
 
       if (isSaved) {
         svg.setAttribute('fill', 'currentColor');
-        svg.className = 'w-4 h-4 text-rose-500 fill-rose-500 transition-transform';
+        svg.setAttribute('class', 'w-4 h-4 text-rose-500 fill-rose-500 transition-transform');
         btn.setAttribute('title', 'Remove from Wishlist');
       } else {
         svg.setAttribute('fill', 'none');
-        svg.className = 'w-4 h-4 text-white fill-none transition-transform';
+        svg.setAttribute('class', 'w-4 h-4 text-white fill-none transition-transform');
         btn.setAttribute('title', 'Save to Wishlist');
       }
     });
